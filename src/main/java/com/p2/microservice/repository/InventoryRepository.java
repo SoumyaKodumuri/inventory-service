@@ -11,6 +11,6 @@ import com.p2.microservice.model.Inventory;
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
 	Inventory findInventoryByskucode(String skucode);
 
-	List<Inventory> findAllByuserid(Long userid);
+	List<Inventory> findAllByuserid(String userid);
 
 }

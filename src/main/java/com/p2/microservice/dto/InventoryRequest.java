@@ -14,7 +14,7 @@ import lombok.Setter;
 @Builder
 public class InventoryRequest {
 	private Long productid;
-	private Long userid;
+	private String userid;
 	private String skucode;
 	private Integer quantity;
 	private status status;

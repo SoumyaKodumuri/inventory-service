@@ -43,7 +43,7 @@ public class InventoryServiceTest {
         inventory = Inventory.builder()
                 .inventoryid(1L)
                 .productid(1L)
-                .userid(1L)
+                .userid("1")
                 .skucode("MBL")
                 .quantity(2)
                 .status(status.AVAILABLE)
@@ -51,7 +51,7 @@ public class InventoryServiceTest {
 
         inventoryRequest = InventoryRequest.builder()
                 .productid(1L)
-                .userid(1L)
+                .userid("1")
                 .skucode("MBL")
                 .quantity(2)
                 .status(status.AVAILABLE)
@@ -60,7 +60,7 @@ public class InventoryServiceTest {
         inventoryResponse = InventoryResponse.builder()
                 .inventoryid(1L)
                 .productid(1L)
-                .userid(1L)
+                .userid("1")
                 .skucode("MBL")
                 .quantity(2)
                 .status(status.AVAILABLE)
@@ -131,7 +131,7 @@ public class InventoryServiceTest {
         when(inventoryRepository.findInventoryByskucode("MBL")).thenReturn(inventory);
         when(inventoryRepository.save(Mockito.any(Inventory.class))).thenReturn(inventory);
 
-        InventoryResponse result = inventoryService.updateInventory(inventoryRequest,"MBL");
+        InventoryResponse result = inventoryService.updateInventory(inventoryRequest, "MBL");
 
         assertEquals(inventoryRequest.getQuantity(), result.getQuantity());
         assertEquals(inventoryRequest.getStatus(), result.getStatus());
@@ -172,35 +172,38 @@ public class InventoryServiceTest {
         assertEquals("Inventory not found for skucode: MBL", exception.getMessage());
     }
 
-//    @Test
-//    public void InventoryService_IsStockAvailable_Returns_True() {
-//        when(inventoryRepository.findInventoryByskucode("SKU123")).thenReturn(inventory);
-//
-//        boolean result = inventoryService.isStockAvailable("SKU123");
-//
-//        assertTrue(result);
-//        verify(inventoryRepository, times(1)).findInventoryByskucode("SKU123");
-//    }
-//
-////    @Test
-////    public void InventoryService_IsStockAvailable_Returns_False() {
-//        inventory.setQuantity(0);
-//        when(inventoryRepository.findInventoryByskucode("SKU123")).thenReturn(inventory);
-//
-//        boolean result = inventoryService.isStockAvailable("SKU123");
-//
-//        assertFalse(result);
-//        verify(inventoryRepository, times(1)).findInventoryByskucode("SKU123");
-//    }
+    // @Test
+    // public void InventoryService_IsStockAvailable_Returns_True() {
+    // when(inventoryRepository.findInventoryByskucode("SKU123")).thenReturn(inventory);
+    //
+    // boolean result = inventoryService.isStockAvailable("SKU123");
+    //
+    // assertTrue(result);
+    // verify(inventoryRepository, times(1)).findInventoryByskucode("SKU123");
+    // }
+    //
+    //// @Test
+    //// public void InventoryService_IsStockAvailable_Returns_False() {
+    // inventory.setQuantity(0);
+    // when(inventoryRepository.findInventoryByskucode("SKU123")).thenReturn(inventory);
+    //
+    // boolean result = inventoryService.isStockAvailable("SKU123");
+    //
+    // assertFalse(result);
+    // verify(inventoryRepository, times(1)).findInventoryByskucode("SKU123");
+    // }
 
-//    @Test
-//    public void InventoryService_IsStockAvailable_Throws_InventoryNotFoundException() {
-//        when(inventoryRepository.findInventoryByskucode("SKU123")).thenReturn(null);
-//
-//        InventoryNotFoundException exception = assertThrows(InventoryNotFoundException.class, () -> {
-//            inventoryService.isStockAvailable("SKU123");
-//        });
-//
-//        assertEquals("Inventory not found for skucode: SKU123", exception.getMessage());
-//    }
+    // @Test
+    // public void
+    // InventoryService_IsStockAvailable_Throws_InventoryNotFoundException() {
+    // when(inventoryRepository.findInventoryByskucode("SKU123")).thenReturn(null);
+    //
+    // InventoryNotFoundException exception =
+    // assertThrows(InventoryNotFoundException.class, () -> {
+    // inventoryService.isStockAvailable("SKU123");
+    // });
+    //
+    // assertEquals("Inventory not found for skucode: SKU123",
+    // exception.getMessage());
+    // }
 }

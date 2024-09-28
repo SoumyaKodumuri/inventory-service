@@ -65,7 +65,7 @@ public class InventoryController {
 
 	
 	@GetMapping("userid/")
-	public List<InventoryResponse> getAllInventoryByUserId(@RequestParam Long userid) {
+	public List<InventoryResponse> getAllInventoryByUserId(@RequestParam String userid) {
 		return inventoryService.getAllInventoryByUserId(userid);
 	}
 	

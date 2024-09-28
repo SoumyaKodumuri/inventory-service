@@ -17,7 +17,7 @@ public class InventoryResponse {
 	
 	private Long inventoryid;
 	private Long productid;
-	private Long userid;
+	private String userid;
 	private String skucode;
 	private Integer quantity;
 	private status status;

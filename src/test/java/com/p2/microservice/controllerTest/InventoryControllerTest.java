@@ -46,21 +46,21 @@ public class InventoryControllerTest {
     @BeforeEach
     public void init() {
         inventoryRequest = InventoryRequest.builder()
-            .productid(1L)
-            .userid(1L)
-            .skucode("MBL")
-            .quantity(2)
-            .status(status.AVAILABLE)
-            .build();
+                .productid(1L)
+                .userid("1")
+                .skucode("MBL")
+                .quantity(2)
+                .status(status.AVAILABLE)
+                .build();
 
         inventoryResponse = InventoryResponse.builder()
-            .inventoryid(1L)
-            .productid(1L)
-            .userid(1L)
-            .skucode("MBL")
-            .quantity(2)
-            .status(status.AVAILABLE)
-            .build();
+                .inventoryid(1L)
+                .productid(1L)
+                .userid("1")
+                .skucode("MBL")
+                .quantity(2)
+                .status(status.AVAILABLE)
+                .build();
     }
 
     @Test
@@ -70,12 +70,12 @@ public class InventoryControllerTest {
 
         // Act
         ResultActions response = mockMvc.perform(post("/api/inventory/")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(inventoryRequest)));
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(inventoryRequest)));
 
         // Assert
         response.andExpect(status().isCreated())
-            .andExpect(jsonPath("$.skucode", CoreMatchers.is(inventoryResponse.getSkucode())));
+                .andExpect(jsonPath("$.skucode", CoreMatchers.is(inventoryResponse.getSkucode())));
     }
 
     @Test
@@ -86,12 +86,12 @@ public class InventoryControllerTest {
 
         // Act
         ResultActions response = mockMvc.perform(get("/api/inventory/byskucode/")
-            .contentType(MediaType.APPLICATION_JSON)
-            .param("skucode", skucode));
+                .contentType(MediaType.APPLICATION_JSON)
+                .param("skucode", skucode));
 
         // Assert
         response.andExpect(status().isOk())
-            .andExpect(jsonPath("$.skuCode", CoreMatchers.is(inventoryResponse.getSkucode())));
+                .andExpect(jsonPath("$.skuCode", CoreMatchers.is(inventoryResponse.getSkucode())));
     }
 
     @Test
@@ -102,11 +102,11 @@ public class InventoryControllerTest {
 
         // Act
         ResultActions response = mockMvc.perform(get("/api/inventory/allinventories/")
-            .contentType(MediaType.APPLICATION_JSON));
+                .contentType(MediaType.APPLICATION_JSON));
 
         // Assert
         response.andExpect(status().isOk())
-            .andExpect(jsonPath("$.size()", CoreMatchers.is(inventoryList.size())));
+                .andExpect(jsonPath("$.size()", CoreMatchers.is(inventoryList.size())));
     }
 
     @Test
@@ -117,13 +117,13 @@ public class InventoryControllerTest {
 
         // Act
         ResultActions response = mockMvc.perform(put("/api/inventory/")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(inventoryRequest))
-            .param("skucode", skucode));
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(inventoryRequest))
+                .param("skucode", skucode));
 
         // Assert
         response.andExpect(status().isOk())
-            .andExpect(jsonPath("$.skucode", CoreMatchers.is(inventoryResponse.getSkucode())));
+                .andExpect(jsonPath("$.skucode", CoreMatchers.is(inventoryResponse.getSkucode())));
     }
 
     @Test
@@ -134,7 +134,7 @@ public class InventoryControllerTest {
 
         // Act
         ResultActions response = mockMvc.perform(delete("/api/inventory/")
-            .param("skucode", skucode));
+                .param("skucode", skucode));
 
         // Assert
         response.andExpect(status().isNoContent());

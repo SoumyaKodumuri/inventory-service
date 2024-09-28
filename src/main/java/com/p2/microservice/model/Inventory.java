@@ -29,7 +29,7 @@ public class Inventory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long inventoryid;
 	private Long productid;
-	private Long userid;
+	private String userid;
 	@Column(unique = true)
 	private String skucode;
 	private Integer quantity;
